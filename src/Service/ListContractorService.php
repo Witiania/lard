@@ -2,13 +2,17 @@
 
 namespace App\Service;
 
+use App\Repository\ContractorRepository;
 use App\Service\Interface\ListContractorInterface;
 
 class ListContractorService implements ListContractorInterface
 {
 
-    public function getContractors(): array
+    public function __construct(
+        private readonly ContractorRepository $contractorRepository
+    ){}
+    public function list(): array
     {
-        // TODO: Implement getContractors() method.
+       return $this->contractorRepository->findAll();
     }
 }
